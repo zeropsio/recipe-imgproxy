@@ -1,10 +1,10 @@
 #yamlPreprocessor=on
 services:
   - hostname: imgproxy
-    type: ubuntu@latest
-    deployFromGit: https://github.com/zeropsio/recipe-imgproxy
+    type: "22.04"
+    buildFromGit: https://github.com/zeropsio/recipe-imgproxy
     enableSubdomainAccess: true
-    envSecrets: 
+    envSecrets:
       IMGPROXY_KEY: <@generateRandomString(<32>) | toHex>
       IMGPROXY_SALT: <@generateRandomString(<32>) | toHex>
       IMGPROXY_ALLOWED_SOURCES: ${storage_apiUrl}/${storage_bucketName}
