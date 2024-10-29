@@ -1,6 +1,7 @@
 zerops:
   - setup: imgproxy
     build:
+      os: ubuntu
       base: go@latest
       buildCommands:
         - curl -Ls https://github.com/imgproxy/imgproxy/archive/v3.20.0.tar.gz | tar -xz --strip-components 1 -C .
@@ -8,6 +9,8 @@ zerops:
       deployFiles:
         - ./imgproxy
     run:
+      os: ubuntu
+      base: ubuntu@latest
       prepareCommands:
         - sudo apt-get update
         - sudo apt-get install libvips-dev
