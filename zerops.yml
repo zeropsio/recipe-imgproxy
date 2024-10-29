@@ -15,8 +15,8 @@ zerops:
       os: ubuntu
       base: ubuntu@latest
       prepareCommands:
-        - sudo apt-get update
-        - sudo apt-get install libvips
+        - sudo apt-get -y update
+        - sudo apt-get -y install libvips
       ports:
         - port: 8080
           httpSupport: true
