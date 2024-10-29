@@ -7,4 +7,4 @@ services:
     envSecrets:
       IMGPROXY_KEY: <@generateRandomString(<32>) | toHex>
       IMGPROXY_SALT: <@generateRandomString(<32>) | toHex>
-      IMGPROXY_ALLOWED_SOURCES: ${storage_apiUrl}/${storage_bucketName}
+      IMGPROXY_ALLOWED_SOURCES: ${storage_apiUrl}/${storage_bucketName}/
