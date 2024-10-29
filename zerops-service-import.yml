@@ -1,0 +1,4 @@
+services:
+  - hostname: imgproxy
+    type: ubuntu@latest
+    envSecrets: 
