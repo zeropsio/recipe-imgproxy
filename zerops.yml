@@ -11,14 +11,17 @@ zerops:
         - CGO_LDFLAGS_ALLOW="-s|-w" go build -buildvcs=false -o ./imgproxy
       deployFiles:
         - ./imgproxy
+        - ./proxy.conf
+        - ./setup.sh
     run:
       os: ubuntu
       base: ubuntu@latest
       prepareCommands:
         - sudo apt-get -y update
-        - sudo apt-get -y install libvips
+        - sudo apt-get -y install libvips nginx
       ports:
-        - port: 8080
+        - port: 80
           httpSupport: true
+      initCommands:
+        - sudo sh setup.sh
       start: ./imgproxy
-
