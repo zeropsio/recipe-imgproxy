@@ -3,14 +3,9 @@ zerops:
     build:
       os: ubuntu
       base: go@latest
-      prepareCommands:
-        - sudo apt-get -y update
-        - sudo apt-get -y install libvips-dev 
       buildCommands:
-        - curl -Ls https://github.com/imgproxy/imgproxy/archive/v3.20.0.tar.gz | tar -xz --strip-components 1 -C .
-        - CGO_LDFLAGS_ALLOW="-s|-w" go build -buildvcs=false -o ./imgproxy
+        - echo "noop"
       deployFiles:
-        - ./imgproxy
         - ./proxy.conf
         - ./setup.sh
     run:
@@ -18,10 +13,12 @@ zerops:
       base: ubuntu@latest
       prepareCommands:
         - sudo apt-get -y update
-        - sudo apt-get -y install libvips nginx
+        - sudo apt-get -y install nginx
+        - sudo wget -O imgproxy.deb https://github.com/zeropsio/deb-packages/releases/download/imgproxy-v3.26.1/imgproxy.amd64.deb
+        - sudo dpkg -i imgproxy.deb
       ports:
         - port: 80
           httpSupport: true
       initCommands:
         - sudo sh setup.sh
-      start: ./imgproxy
+      start: imgproxy
